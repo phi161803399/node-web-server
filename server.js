@@ -33,9 +33,9 @@ hbs.registerHelper('getCurrentYear', () => {
   return new Date().getFullYear();
 });
 
-// hbs.registerHelper('screamIt', (text1,text2) => {
-//   return text1.toUpperCase() + ' ' + text2.toUpperCase()
-// });
+hbs.registerHelper('screamIt', (text1,text2) => {
+  return text1.toUpperCase() + ' ' + text2.toUpperCase()
+});
 hbs.registerHelper('screamIt', (text) => text.toUpperCase());
 
 
@@ -58,6 +58,13 @@ app.get('/', (req, res) => { //request, respons '/' local filesystem
     welcomeMessage: 'Welcome to my website'
   });
 });
+
+app.get('/projects', (req, res) => {
+  res.render('projects.hbs', {
+    pageTitle: 'Projects',
+    welcomeMessage: 'These are my projects'
+  })
+})
 
 app.get('/about', (req, res) => {
   res.render('about.hbs', {
