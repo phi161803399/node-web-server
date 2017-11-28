@@ -3,6 +3,7 @@ const path = require('path');
 const hbs = require('hbs');
 const fs = require('fs');
 
+const port = process.env.PORT || 3000;
 var app = express();
 
 hbs.registerPartials(__dirname + '/views/partials');
@@ -32,17 +33,17 @@ hbs.registerHelper('getCurrentYear', () => {
   return new Date().getFullYear();
 });
 
-hbs.registerHelper('screamIt', (text) => {
-  return text.toUpperCase();
+hbs.registerHelper('screamIt', (text1,text2) => {
+  return text1.toUpperCase() + ' ' + text2.toUpperCase()
 });
 
 //if code below is commented out everything works fine if not page goes in maintenance mode
-app.use((req, res, next) => {
-  res.render('maintenance.hbs', {
-    pageTitle: 'Maintenance page',
-    maintenanceMessage: 'We\'ll be right back!'
-  });
-});
+// app.use((req, res, next) => {
+//   res.render('maintenance.hbs', {
+//     pageTitle: 'Maintenance page',
+//     maintenanceMessage: 'We\'ll be right back!'
+//   });
+// });
 
 app.use(express.static(__dirname + '/public'));
 
@@ -72,6 +73,6 @@ app.get('/bad', (req, res) => {
   });
 });
 
-app.listen(3000, () => {
-  console.log('Server is up on port 3000');
+app.listen(port, () => {
+  console.log(`Server is up on port ${port}`);
 });// custom port for developing
