@@ -33,9 +33,11 @@ hbs.registerHelper('getCurrentYear', () => {
   return new Date().getFullYear();
 });
 
-hbs.registerHelper('screamIt', (text1,text2) => {
-  return text1.toUpperCase() + ' ' + text2.toUpperCase()
-});
+// hbs.registerHelper('screamIt', (text1,text2) => {
+//   return text1.toUpperCase() + ' ' + text2.toUpperCase()
+// });
+hbs.registerHelper('screamIt', (text) => text.toUpperCase());
+
 
 //if code below is commented out everything works fine if not page goes in maintenance mode
 // app.use((req, res, next) => {
@@ -53,8 +55,7 @@ app.get('/', (req, res) => { //request, respons '/' local filesystem
   // home.hbs
   res.render('home.hbs', {
     pageTitle: 'Home page',
-    welcomeMessage: 'Welcome',
-    name: 'Mark'
+    welcomeMessage: 'Welcome to my website'
   });
 });
 
